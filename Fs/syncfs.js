@@ -1,6 +1,6 @@
 const fs = require("fs"); 
 const path = require("path");
-const fileName="text.txt"
+const fileName="sync.txt"
 const filePath= path.join(__dirname,fileName);
 const writeFile = fs.writeFileSync(filePath,"all the data here watch  it ,updated","utf-8")
 console.log(writeFile)
