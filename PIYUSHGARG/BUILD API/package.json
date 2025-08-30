@@ -1,9 +1,9 @@
 {
   "name": "node-js",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "node build_Api.js",
   "scripts": {
-    "start":"node index.js"
+    "start":"node build_Api.js"
   },
   "repository": {
     "type": "git",
