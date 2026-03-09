@@ -1,5 +1,11 @@
 // External Module
+const path =require('path')
 const express = require('express');
+const userRouter=require("./routes/userRouter")
+const hostRouter=require("./routes/HostRouter")
+const rootDir=require("./utils/pathUtils")
+
+
 
 const app=express();
 
@@ -9,32 +15,14 @@ app.use((req,res,next)=>{
 })
 
 app.use(express.urlencoded());
+app.use(userRouter);
+app.use("/host",hostRouter)
+app.use(express.static(path.join(rootDir,'public')))
 
-app.get("/",(req,res,next)=>{
-    
-    res.send(`<h1>Welcome to air bnb</h1>
-        <a href="add-home">Add Home</a>`
-    );
-})
-app.get("/add-home",(req,res,next)=>{
-    
-    res.send(`<h1>create your account here</h1>
-        <form action="/add-home" method="POST">
-            <input type="text" name="housename" placeholder='enter your housename'/>
-            <input type="submit"/>
-        </form>`
-    );
-    })
-app.post("/add-home",(req,res,next)=>{
-    console.log(req.body)
-       res.send(`<h1>Home registered successfully</h1>
-       <a href="/">Go to Home</a>`
+app.use((req,res,next)=>{
+   res.sendFile(path.join(rootDir,'views','404.html')
        );
 })
-
-
-
-
 
 
 
