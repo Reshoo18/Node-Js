@@ -4,8 +4,8 @@ const Product=require('../models/productModel.js')
 const getProducts=async(req,res)=>{
     try{
       const allProducts= await Product.find();
-      if(!allProducts){
-        res.json({
+      if(!allProducts || allProducts.length===0){
+        return res.json({
             message:"product not found"
         })
       }

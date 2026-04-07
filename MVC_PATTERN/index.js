@@ -4,7 +4,7 @@ const productRoutes=require('./routes/productRoutes.js')
 dotenv.config();
 const app=express();
 const connectDb=require('./config/db.js')
-const PORT=process.env.PORT;
+const PORT=process.env.PORT||3000;
 connectDb();
 app.get('/',(req,res)=>{
     res.send("this is the home page")
