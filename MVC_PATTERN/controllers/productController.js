@@ -45,7 +45,7 @@ const updateProduct=async(req,res)=>{
     const {id}=req.params
     const {name,price,description,category}=req.body;
 
-    const updatedProduct= await  Product.findOneAndUpdate(id,{name,price,description,category},{new:true});
+    const updatedProduct= await  Product.findByIdAndUpdate(id,{name,price,description,category},{new:true});
     res.status(200).json({
       product:updatedProduct
     })
@@ -57,6 +57,26 @@ const updateProduct=async(req,res)=>{
   }
 }
 
+const deleteProduct=async(req,res)=>{
+  try{
+       const {id}=req.params;
+       const deletedProduct=await Product.findByIdAndDelete(id)
+       if(!deletedProduct){
+        return res.json({
+          message:"there is no data"
+        })
+       }
+       res.status(200).json({
+        product:deletedProduct,
+        message:"data is deleted"
+       })
+  }catch(error){
+    res.status(500).json({
+      success:false,
+      message:"this is internal server"
+    })
+  }
+}
 
 
-module.exports={getProducts,updateProduct}
+module.exports={getProducts,updateProduct,createProduct,deleteProduct}

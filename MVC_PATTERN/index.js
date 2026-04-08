@@ -1,13 +1,15 @@
 const express=require('express')
 const dotenv=require('dotenv')
+
 const productRoutes=require('./routes/productRoutes.js')
 dotenv.config();
 const app=express();
+app.use(express.json())
 const connectDb=require('./config/db.js')
 const PORT=process.env.PORT||3000;
 connectDb();
 
-app.use(express.json())
+
 app.get('/',(req,res)=>{
     res.send("this is the home page")
 })
