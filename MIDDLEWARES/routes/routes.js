@@ -41,7 +41,7 @@ const adminMiddleware=function (req,res,next){
 }
 
 
-//routes
+//routes middlewares
 
 router.get("/student",authMiddleWare,studentMiddeware,(req,res)=>{
     console.log("I am the student page");
